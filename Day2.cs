@@ -59,6 +59,12 @@ namespace AdventOfCode24
 
         public bool IsSafeBruteForce(List<int> rowValues)
         {
+            // Check full list first
+            if (this.IsSafe(rowValues))
+            {
+                return true;
+            }
+
             for (int i = 0; i < rowValues.Count; i++)
             {
                 var listToTest = new List<int>(rowValues);
