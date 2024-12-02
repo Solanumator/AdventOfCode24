@@ -76,7 +76,6 @@ namespace AdventOfCode24.Days
                     }
                 }
 
-
                 // Calculate total based on counts
                 foreach (var val in left)
                 {
