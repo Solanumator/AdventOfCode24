@@ -39,6 +39,39 @@ namespace AdventOfCode24
             });
         }
 
+        [Test]
+        public void Part2()
+        {
+            // Expecting 343
+            this.TimedTest(() =>
+            {
+                var safeReports = 0;
+
+                foreach (var l in this.lines)
+                {
+                    var isSafe = this.IsSafeBruteForce(l);
+                    safeReports += isSafe ? 1 : 0;
+                }
+
+                Console.WriteLine(safeReports);
+            });
+        }
+
+        public bool IsSafeBruteForce(List<int> rowValues)
+        {
+            for (int i = 0; i < rowValues.Count; i++)
+            {
+                var listToTest = new List<int>(rowValues);
+                listToTest.RemoveAt(i);
+                if (this.IsSafe(listToTest))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         private bool IsSafe(List<int> rowValues)
         {
             var isAsc = true;
