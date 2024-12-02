@@ -42,7 +42,6 @@ namespace AdventOfCode24
         [Test]
         public void Part2()
         {
-            // Expecting 343
             this.TimedTest(() =>
             {
                 var safeReports = 0;
