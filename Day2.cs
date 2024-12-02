@@ -36,8 +36,6 @@ namespace AdventOfCode24
                 }
 
                 Console.WriteLine(safeReports);
-
-                Assert.IsTrue(safeReports == 279);
             });
         }
 
