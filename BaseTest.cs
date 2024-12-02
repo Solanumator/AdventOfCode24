@@ -9,7 +9,7 @@ namespace AdventOfCode24
             var watch = Stopwatch.StartNew();
             action();
             watch.Stop();
-            Console.WriteLine($"Execution Time: {watch.ElapsedMilliseconds} ms");
+            Console.WriteLine($"Execution Time: {watch.ElapsedTicks} ticks");
         }
     }
 }
