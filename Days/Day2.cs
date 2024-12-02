@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AdventOfCode24
+namespace AdventOfCode24.Days
 {
     [TestFixture]
     public class Day2 : BaseTest
@@ -26,13 +26,13 @@ namespace AdventOfCode24
         [Test]
         public void Part1()
         {
-            this.TimedTest(() =>
+            TimedTest(() =>
             {
                 var safeReports = 0;
 
-                foreach (var l in this.lines)
+                foreach (var l in lines)
                 {
-                    safeReports += this.IsSafe(l) ? 1 : 0;
+                    safeReports += IsSafe(l) ? 1 : 0;
                 }
 
                 Console.WriteLine(safeReports);
@@ -42,13 +42,13 @@ namespace AdventOfCode24
         [Test]
         public void Part2()
         {
-            this.TimedTest(() =>
+            TimedTest(() =>
             {
                 var safeReports = 0;
 
-                foreach (var l in this.lines)
+                foreach (var l in lines)
                 {
-                    var isSafe = this.IsSafeBruteForce(l);
+                    var isSafe = IsSafeBruteForce(l);
                     safeReports += isSafe ? 1 : 0;
                 }
 
@@ -59,7 +59,7 @@ namespace AdventOfCode24
         public bool IsSafeBruteForce(List<int> rowValues)
         {
             // Check full list first
-            if (this.IsSafe(rowValues))
+            if (IsSafe(rowValues))
             {
                 return true;
             }
@@ -68,7 +68,7 @@ namespace AdventOfCode24
             {
                 var listToTest = new List<int>(rowValues);
                 listToTest.RemoveAt(i);
-                if (this.IsSafe(listToTest))
+                if (IsSafe(listToTest))
                 {
                     return true;
                 }

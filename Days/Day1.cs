@@ -2,7 +2,7 @@ using AdventOfCode24.Util;
 using NUnit.Framework;
 using System.Text.RegularExpressions;
 
-namespace AdventOfCode24
+namespace AdventOfCode24.Days
 {
     public class Tests : BaseTest
     {
@@ -18,19 +18,19 @@ namespace AdventOfCode24
             {
                 // Split by one or more spaces
                 string[] res = Regex.Split(line, @"\s+");
-                this.left.Add(int.Parse(res[0]));
-                this.right.Add(int.Parse(res[1]));
+                left.Add(int.Parse(res[0]));
+                right.Add(int.Parse(res[1]));
 
                 // Order the lists
-                this.left.Sort();
-                this.right.Sort();
+                left.Sort();
+                right.Sort();
             }
         }
 
         [Test]
         public void Part1()
         {
-            this.TimedTest(() =>
+            TimedTest(() =>
             {
                 var result = 0;
 
@@ -47,11 +47,11 @@ namespace AdventOfCode24
         [Test]
         public void Part2()
         {
-            this.TimedTest(() =>
+            TimedTest(() =>
             {
-                var rightCounts = this.right.GroupBy(x => x).ToDictionary(g => g.Key, g => g.Count());
+                var rightCounts = right.GroupBy(x => x).ToDictionary(g => g.Key, g => g.Count());
 
-                var total = this.left.Sum(val => val * (rightCounts.ContainsKey(val) ? rightCounts[val] : 0));
+                var total = left.Sum(val => val * (rightCounts.ContainsKey(val) ? rightCounts[val] : 0));
                 Console.WriteLine(total);
             });
         }
@@ -59,7 +59,7 @@ namespace AdventOfCode24
         [Test]
         public void Part2NoLinq()
         {
-            this.TimedTest(() =>
+            TimedTest(() =>
             {
                 var total = 0;
                 var rightCounts = new Dictionary<int, int>();
