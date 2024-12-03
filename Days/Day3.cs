@@ -61,8 +61,6 @@ namespace AdventOfCode24.Days
             return res;
         }
 
-        // 59097164
-        // 75434 ticks
         private int MultiplyRow_Part2(string row)
         {
             var res = 0;
