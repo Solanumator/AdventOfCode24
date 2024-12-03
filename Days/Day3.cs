@@ -61,26 +61,28 @@ namespace AdventOfCode24.Days
             return res;
         }
 
+        // 59097164
+        // 75434 ticks
         private int MultiplyRow_Part2(string row)
         {
             var res = 0;
 
             foreach (Match m in Part2Regex().Matches(row))
             {
-                if (m.Groups["mul"].Success && this.isEnabled)
-                {
-                    var num1 = int.Parse(m.Groups["num1"].Value);
-                    var num2 = int.Parse(m.Groups["num2"].Value);
-
-                    res += (num1 * num2);
-                }
-                else if (m.Groups["dont"].Success)
+                if (m.Groups["dont"].Success)
                 {
                     this.isEnabled = false;
                 }
                 else if (m.Groups["do"].Success)
                 {
                     this.isEnabled = true;
+                }
+                else if (this.isEnabled)
+                {
+                    var num1 = int.Parse(m.Groups["num1"].Value);
+                    var num2 = int.Parse(m.Groups["num2"].Value);
+
+                    res += (num1 * num2);
                 }
             }
 
