@@ -16,39 +16,19 @@ namespace AdventOfCode24.Days
         private bool isEnabled = true;
 
         [OneTimeSetUp]
-        public void Setup()
-        {
-            this.lines = LoadFile.LoadInput(3, 1).ToList();
-
-        }
+        public void Setup() => this.lines = LoadFile.LoadInput(3, 1).ToList();
 
         [Test]
-        public void Part1()
-        {
-            TimedTest(() =>
-            {
-                Console.WriteLine(this.lines.Sum(x => this.MultiplyRow(x)));
-            });
-        }
+        public void Part1() =>
+            TimedTest(() => Console.WriteLine(this.lines.Sum(x => this.MultiplyRow(x))));
 
         [Test]
-        public void Part1_SingleRegex()
-        {
-            TimedTest(() =>
-            {
-                Console.WriteLine(this.lines.Sum(x => this.MultiplyRow_SingleRegex(x)));
-            });
-        }
+        public void Part1_SingleRegex() =>
+            TimedTest(() => Console.WriteLine(this.lines.Sum(x => this.MultiplyRow_SingleRegex(x))));
 
         [Test]
-        public void Part2()
-        {
-            TimedTest(() =>
-            {
-                Console.WriteLine(this.lines.Sum(x => this.MultiplyRow_Part2(x)));
-                // Console.WriteLine(this.MultiplyRow_Part2("xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))"));
-            });
-        }
+        public void Part2() =>
+            TimedTest(() => Console.WriteLine(this.lines.Sum(x => this.MultiplyRow_Part2(x))));
 
         private int MultiplyRow(string row)
         {
