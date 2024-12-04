@@ -60,6 +60,8 @@ namespace AdventOfCode24.Days
             });
         }
 
+
+        // 853 - Too low, 1911 - Too high
         [Test]
         public void Part2()
         {
@@ -82,11 +84,10 @@ namespace AdventOfCode24.Days
                 // Loop each result and check which ones cross
                 foreach (var result in found)
                 {
-                    var middleX = result.direction.GetNeighbourVector().x;
-                    var middleY = result.direction.GetNeighbourVector().y;
+                    var neighbour = result.direction.GetNeighbourInDirection(result.y, result.x);
 
                     // Check these directions, from the right place..
-                    var resToCheck = result.direction.GetCrossingVectors(middleX, middleY);
+                    var resToCheck = result.direction.GetCrossingVectors(neighbour.x, neighbour.y);
 
                     foreach (var toCheck in resToCheck)
                     {
@@ -95,6 +96,7 @@ namespace AdventOfCode24.Days
                 }
 
                 Console.WriteLine(res);
+                Console.WriteLine(res / 2);
             });
         }
 
@@ -206,11 +208,17 @@ namespace AdventOfCode24.Days
             var oppDirection = perpDirection.Opposite();
 
             // Start position for perpDirection
-            var perpVector = perpDirection.GetNeighbourVector();
-            res.Add((oppDirection, x + perpVector.x, y + perpVector.y));
+            // var perpVector = perpDirection.GetNeighbourVector();
+            // res.Add((oppDirection, x + perpVector.x, y + perpVector.y));
 
-            var oppVector = oppDirection.GetNeighbourVector();
-            res.Add((perpDirection, x + oppVector.x, y + perpVector.y));
+            // var oppVector = oppDirection.GetNeighbourVector();
+            // res.Add((perpDirection, x + oppVector.x, y + perpVector.y));
+
+            var neighbour1 = perpDirection.GetNeighbourInDirection(y, x);
+            res.Add((oppDirection, neighbour1.y, neighbour1.x));
+
+            var neighbour2 = oppDirection.GetNeighbourInDirection(y, x);
+            res.Add((perpDirection, neighbour2.y, neighbour2.x));
 
             return res;
         }
@@ -228,6 +236,21 @@ namespace AdventOfCode24.Days
                 Direction.DownRight => (1, 1),
                 _ => (0, 0),
             };
+
+        public static (int y, int x) GetNeighbourInDirection(this Direction dir, int row, int col) =>
+            dir switch
+            {
+                Direction.UpLeft => (row - 1, col - 1),
+                Direction.Up => (row - 1, col),
+                Direction.UpRight => (row - 1, col + 1),
+                Direction.Left => (row, col -1),
+                Direction.Right => (row, col + 1),
+                Direction.DownLeft => (row + 1, col - 1),
+                Direction.Down => (row + 1, col),
+                Direction.DownRight => (row + 1, col + 1),
+                _ => (row, col),
+            };
+
     }
 
     public enum Direction
